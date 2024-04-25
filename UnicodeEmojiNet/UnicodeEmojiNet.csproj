@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>1.0</Version>
+        <Title>UnicodeEmojiNet</Title>
+        <Description>This package allows to retrieve all emojis of the unicode page and gives back a simple but big json list with all emojis and names.</Description>
+        <Copyright>liebki - emojis unicode</Copyright>
+        <PackageProjectUrl>https://github.com/liebk/UnicodeEmojiNet</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/liebk/UnicodeEmojiNet</RepositoryUrl>
+        <RepositoryType>github</RepositoryType>
+        <PackageTags>unicode, emoji, scraper</PackageTags>
+        <PackageReleaseNotes>First release with a few simple methods to generate a json file, get a list or the json as string!</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <AssemblyVersion>1.0</AssemblyVersion>
+        <FileVersion>1.0</FileVersion>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageIcon>icon.png</PackageIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        
+        <None Include="..\icon.png">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+
+        <None Include="..\DISCLAIMER.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+</Project>
