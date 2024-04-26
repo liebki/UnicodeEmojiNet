@@ -3,15 +3,15 @@
 
 ## Introduction
 
-UnicodeEmojiNet allows to simply retrieve all Unicode emojis with their name in C# either get them as a JSON file, json string or as custom objects in a List.
+UnicodeEmojiNet allows to simply retrieve all Unicode emojis with their name and categories in C# either get them as a JSON string or as custom objects in a List.
 
 
 ## Features ⭐
 
 - **Retrieve Emojis:** Retrieve emojis from the Unicode website.
-- **Generate JSON file:** Generate a JSON file containing emojis with their values, names, and recent addition status.
-- **Get the JSON as string:** Get the JSON file as string object and what you want
-- **Get a List<EmojiInfo>:** Get a list identical to the JSON file, which contains all emojis as objects
+  - As JSON string or as custom objects in a list
+- **Retrieve emoji categories:** Get all available categories (main and sub)
+  - As custom objects in a list
 
 
 ## Usage 🔧
@@ -40,13 +40,22 @@ This method checks if the **needed** html files are present so it returns true o
 bool AreHtmlFilesPresent = emojiManager.AreSourcesPresent();
 ```
 
-#### Download html files and create JSON:
+#### Download html files and process those:
 
-Call the method `DownloadEmojiFilesAndCreateJson()` to download emoji files and generate the JSON:
-The JSON is called "unicode-emojis.json" and will also be created in the "operatingFolder"-directory.
+To download the needed emoji files and process them, you need to call this before you do anything else (or ensure the files are available).
+If this was called once and the files are present, it doesn't have to be run again.
 
 ```csharp
-emojiManager.DownloadEmojiFilesAndCreateJson();
+emojiManager.DownloadAndProcessFiles();
+```
+
+
+#### Get all emoji categories as list:
+
+Get all "MainCategories" (like "Animals" etc.) and their "SubCategories" (like "marine" etc.) which are inside the main ones.
+
+```csharp
+List<EmojiCategory> AllCategories = emojiManager.GetAllCategories();
 ```
 
 
@@ -72,40 +81,57 @@ List<EmojiInfo> EmojiList = emojiManager.GetEmojiList();
 Here is a example snippet to use the code.
 
 ```csharp
-EmojiManager man = new EmojiManager(@"/Users/YourName/Desktop/", false);
-
-if (man.AreSourcesPresent())
+static async Task Main(string[] args)
 {
-    Console.WriteLine("Sources are present, operating:");
-    
-    List<EmojiInfo> EmojiListe = await man.GetEmojiList();
-    string ListJson = await man.GetEmojiListAsJsonString();
-    
-    // ...
+    const string workingDir = "/Users/WhAreYou/Desktop/";
+    EmojiManager man = new EmojiManager(workingDir, false);
+
+    if (man.AreSourcesPresent())
+    {
+        // Has to be called to fill all variables in the background
+        await man.DownloadAndProcessFiles();
+
+        List<EmojiInfo> emojis = await man.GetEmojiList();
+        List<EmojiCategory> categories = await man.GetAllCategories();
+    }
 }
 ```
 
 
-### Information on usage:
-Calling any of these methods needs the html files (because they contain the emojis) so if those files are NOT in the "operatingFolder" calling any of those methods will result in an error, you can also just AreSourcesPresent() to check before!
+### How to skip/speed-up source download:
 
-### Skipping in-code download:
+- You can download them yourself and put them in a folder
+- You can download them, pack them in a binary and copy them in a certain folder
 
-To skip the download in-code you could download the complete source of the sites in the code and put them in the folder you will specify as "operatingFolder" then they won't be downloaded but I can't and won't deliver the files with this code!
+.. you get it..
+
 
 ## Types 🔖
 
-- **EmojiInfo:** Represents information about an emoji including
+- **EmojiInfo:** The emoji itself
+  - Id (a running number given by unicode) - int
   - Value (the emoji character) - string
-  - Name (the emoji name) - string
+  - Name (the name) - string
   - IsRecentlyAdded (is it a newly added emoji?) - bool
-  - Argument/Category (**This is WIP**)
+  - MainCategory (like animals) - string
+  - SubCategory (like marine-animals) - string
+
+
+- **EmojiCategory:** A category in which emojis are sorted in
+  - CategoryName (this is the name of the main-category) - string
+  - SubCategories (the names of all sub-categories under this main-category) - string[] 
+
+
+## FAQ
+
+Q: How do you expect me to use this when it needs to download the html files?
+
+A: I will think of something to make it easier, but for now you could download them yourself and them deliver them with your file and copy them to a "operatingFolder".
 
 
 ## To-Do
 
 - Implement some caching and/or a faster way to download everything
-- Implement categories and/or arguments to put the emojis inside to filter them (important).
 
 
 ## License 📜
