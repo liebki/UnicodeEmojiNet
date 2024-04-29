@@ -6,7 +6,9 @@
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <Version>1.1</Version>
+        <Version>1.2</Version>        
+        <AssemblyVersion>1.2</AssemblyVersion>
+        <FileVersion>1.2</FileVersion>
         <Title>UnicodeEmojiNet</Title>
         <Description>Get all official unicode emojis with their names, categories etc. as JSON or objects in a simple way.</Description>
         <Copyright>liebki - The emojis are owned by Unicode</Copyright>
@@ -14,10 +16,8 @@
         <RepositoryUrl>https://github.com/liebki/UnicodeEmojiNet</RepositoryUrl>
         <RepositoryType>github</RepositoryType>
         <PackageTags>unicode, emoji, scraper</PackageTags>
-        <PackageReleaseNotes>Added the main- and sub-categories, now they are sort- and filterable! Also I changed a few names and removed the creation of the JSON-file since it was useless.</PackageReleaseNotes>
+        <PackageReleaseNotes>Changed something in the background, fixing JSON not in variable.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <AssemblyVersion>1.1</AssemblyVersion>
-        <FileVersion>1.1</FileVersion>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageIcon>icon.png</PackageIcon>
     </PropertyGroup>
@@ -27,7 +27,7 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        
+
         <None Include="..\icon.png">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
@@ -37,16 +37,16 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        
+
         <None Include="..\README.md">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="HtmlAgilityPack" Version="1.11.60" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="HtmlAgilityPack" Version="1.11.60"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
     </ItemGroup>
 
 </Project>

@@ -19,6 +19,7 @@ public class EmojiInfo
 
     public override string ToString()
     {
-        return $"Name: {Name} | Value: {Value} | IsNew: {IsRecentlyAdded} | Category: {MainCategory} | SubCategory: {SubCategory}";
+        return
+            $"Name: {Name} | Value: {Value} | IsNew: {IsRecentlyAdded} | Category: {MainCategory} | SubCategory: {SubCategory}";
     }
 }

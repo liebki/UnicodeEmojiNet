@@ -9,7 +9,6 @@ public class EmojiCategory
     }
 
     public string CategoryName { get; set; }
-    
+
     public string[] SubCategories { get; set; }
-    
 }
