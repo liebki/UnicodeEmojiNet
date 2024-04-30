@@ -22,29 +22,29 @@ Initialize the EmojiManager using the constructor:
 EmojiManager emojiManager = new EmojiManager(string operatingFolder, bool skipAdditional);
 ```
 
-#### What is skipAdditional?
+#### What does skipAdditional do?
 
-If **skipAdditional**  is true, only the main-list will be queried and
-processed (https://unicode.org/emoji/charts/full-emoji-list.html) the other list(s) won't be used because they "only"
+If **skipAdditional**  is set to true, only the main-list will be queried and
+processed (which is https://unicode.org/emoji/charts/full-emoji-list.html), the other list(s) won't be because they "only"
 contain variations like all skin tones, the main list only contains the yellow tone.
+
 
 ### Code
 
-Here are all available things you can do right now:
+Here are all things you can do right now:
 
-#### Check if the html files are present in the operatingFolder:
+#### Check if html source files are present in operatingFolder:
 
-This method checks if the **needed** html files are present so it returns true or false.
+This method checks if the **needed** html files are present and returns true or false.
 
 ```csharp
 bool AreHtmlFilesPresent = emojiManager.AreSourcesPresent();
 ```
 
-#### Download html files and process those:
+#### Download html source files and process:
 
-To download the needed emoji files and process them, you need to call this before you do anything else (or ensure the
-files are available).
-If this was called once and the files are present, it doesn't have to be run again.
+Before you can do anything else, call this so (the files are processed and) everything is done.
+But if this was called once and the files are present, you are good to go.
 
 ```csharp
 emojiManager.DownloadAndProcessFiles();
@@ -116,6 +116,10 @@ static async Task Main(string[] args)
     - CategoryName (this is the name of the main-category) - string
     - SubCategories (the names of all sub-categories under this main-category) - string[]
 
+## Example projects
+- [EmojiSearchEngine](https://emojisearchengine.pages.dev) (simple light blazor wasm example which I needed to create this library for)
+
+
 ## FAQ
 
 Q: How do you expect me to use this when it needs to download the html files?
@@ -148,3 +152,5 @@ Please be aware that the author of the project and the project itself are not en
 views or opinions of Unicode or any individuals officially involved with the project. The author of this library is not
 responsible for any incorrect or inappropriate usage. Please ensure that you use this library in accordance with its
 intended purpose and guidelines.
+
+###### The newest ReadMe and the repository can be found [here](https://github.com/liebki/UnicodeEmojiNet/blob/main/README.md)
